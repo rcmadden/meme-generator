@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class IngestorInterface(ABC):
+class IngestInterface(ABC):
     allowed_extensions = []
  
     @classmethod
