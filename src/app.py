@@ -4,25 +4,35 @@ import requests
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
+from MemeGenerator import MemeEngine
+
+from IngestEngine import IngestInterface
+from QuoteEngine import QuoteModel
+
 
 app = Flask(__name__)
-
+# Create this directory./static
 meme = MemeEngine('./static')
 
 
 def setup():
     """ Load all resources """
+    path_prefix = '/Users/russiam/_Dev/udacity-meme-generator/meme-generator/src'
+    # quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
+    #                './_data/DogQuotes/DogQuotesDOCX.docx',
+    #                './_data/DogQuotes/DogQuotesPDF.pdf',
+    #                './_data/DogQuotes/DogQuotesCSV.csv']
 
-    quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                   './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
-
+    quote_files = [path_prefix + '/_data/DogQuotes/DogQuotesTXT.txt',
+                   path_prefix + '/_data/DogQuotes/DogQuotesDOCX.docx',
+                   path_prefix + '/_data/DogQuotes/DogQuotesPDF.pdf',
+                   path_prefix + '/_data/DogQuotes/DogQuotesCSV.csv']
     # TODO: Use the Ingestor class to parse all files in the
     # quote_files variable
     quotes = None
 
-    images_path = "./_data/photos/dog/"
+    # images_path = "./_data/photos/dog/"
+    images_path = path_prefix + "/_data/photos/dog/"
 
     # TODO: Use the pythons standard library os class to find all
     # images within the images images_path directory
