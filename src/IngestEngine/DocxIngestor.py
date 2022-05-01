@@ -1,3 +1,4 @@
+from ast import parse
 from typing import List
 import docx
 
@@ -17,8 +18,8 @@ class DocxIngestor(IngestInterface):
 
         for para in doc.paragraphs:
             if para.text != "":
-                parse = para.text.split(',')
-                new_quote = QuoteModel(parse[0], int(parse[1]), bool(parse[2]))
+                parse = para.text.split(' -')
+                new_quote = QuoteModel(parse[0], parse[1])
                 quotes.append(new_quote)
 
         return quotes
