@@ -10,11 +10,10 @@ def setup():
     # quote_files = [path_prefix + '/_data/DogQuotes/DogQuotesCSV.csv']
 
     quote_files = [
-                    path_prefix + '/_data/DogQuotes/DogQuotesTXT.txt',
+                    # path_prefix + '/_data/DogQuotes/DogQuotesTXT.txt',
                    path_prefix + '/_data/DogQuotes/DogQuotesDOCX.docx',
                    path_prefix + '/_data/DogQuotes/DogQuotesPDF.pdf',
-                   path_prefix + '/_data/DogQuotes/DogQuotesCSV.csv'
-                   ]
+                   path_prefix + '/_data/DogQuotes/DogQuotesCSV.csv']
     # TODO: Use the Ingestor class to parse all files in the
     # quote_files variable
     quotes = []
@@ -31,8 +30,8 @@ def setup():
     print(quotes)
     return quotes, imgs
 
-# quotes, imgs = setup()
-quotes = setup()
+quotes, imgs = setup()
+# quotes = setup()
 # quotes = CSVIngestor.parse(quote_files[0])
 
 @app.route("/")

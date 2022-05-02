@@ -6,8 +6,8 @@ from QuoteEngine import QuoteModel
 from .DocxIngestor import DocxIngestor
 from .CSVIngestor import CSVIngestor
 
-class Importer(IngestInterface):
-    ingestors = [DocxIngestor]
+class TextIngestor(IngestInterface):
+    ingestors = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

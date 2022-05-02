@@ -25,3 +25,7 @@ instructions for setting up and running the program:
     It uses the requests package to fetch an image from a user submitted URL.
 
 a brief description of the roles-and-responsibilities of all sub-modules including dependencies and examples of how to use the module:
+
+The PDFIngestor class utilizes the subprocess module to call the C program pdftotext CLI utility—creating a pipeline that converts PDFs to text <https://www.xpdfreader.com/pdftotext-man.html> and then ingests the text.
+
+NOTE: Do not use the pdftotext PIP Library - purpose is to demonstrate use of the subprocess module.
