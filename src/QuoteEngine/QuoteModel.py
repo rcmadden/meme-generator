@@ -12,13 +12,14 @@ TODO: Implement a simple QuoteModel class to encapsulat the body and the author
 from IngestEngine import CSVIngestor
 
 class QuoteModel():
-    def __init__(self, body_text, author):
+    def __init__(self, body, author):
         """Create a new quote."""
-        self.body_text = body_text
+        self.body = body
         self.author = author
     
     def model_content(self):
-        return f'{self.body_text} -{self.author}'
+        #TODO: check for quotes then add
+        return f'{self.body} -{self.author}'
 
     def __repr__(self):
-        return f'<{self.body_text}, -{self.author}>'
+        return f'<{self.body}, -{self.author}>'

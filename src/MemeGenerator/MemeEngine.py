@@ -19,9 +19,16 @@ class MemeEngine():
 # make_meme(self, img_path, text, author, width=500) -> str 
 # #generated image path
     def make_meme(self, img_path, text, author, width=500) -> str:
-        pass
+        self.img_path = img_path
+        self.text = text
+        self.author = author
+        self.width = width
+        
+        return img_path, text, author
 
 # The init method should take a required argument 
 # for where to save the generated images: __init__(self, output_dir...).
     def __init__(self, output_dir):
         self.output_dir = output_dir
+        print(self.output_dir)
+        # return self.output_dir
