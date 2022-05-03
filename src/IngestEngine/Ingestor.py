@@ -9,7 +9,7 @@ from .TextIngestor import TextIngestor
 
 
 class Ingestor(IngestInterface):
-    ingestors = [DocxIngestor, CSVIngestor, PDFIngestor]
+    ingestors = [DocxIngestor, CSVIngestor, PDFIngestor, TextIngestor]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
