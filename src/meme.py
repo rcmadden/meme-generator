@@ -33,6 +33,8 @@ def generate_meme(path=None, body=None, author=None):
         quote = random.choice(quotes)
         print(quote)
 
+    elif len(body) > 40:
+        raise Exception('Qutoe Body should be less than 40 characters')
     else:
         if author is None:
             raise Exception('Author Required if Body is Used')
