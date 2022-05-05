@@ -5,6 +5,7 @@ from QuoteEngine import QuoteModel
 
 
 class IngestInterface(ABC):
+    """An abstract method for parsing the file type and outputting it to a Quote object."""     
     allowed_extensions = []
  
     @classmethod
@@ -15,8 +16,7 @@ class IngestInterface(ABC):
     @classmethod
     @abstractmethod
     def parse(cls, path:str) -> List[QuoteModel]:
+        """Separate strategy objects realize IngestorInterface for each file type (csv, docx, pdf, txt)."""
         pass
 
-# An abstract method for parsing the file content (i.e., splitting each row) 
-# and outputting it to a Quote object.     
     
