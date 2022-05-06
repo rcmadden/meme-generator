@@ -29,3 +29,7 @@ a brief description of the roles-and-responsibilities of all sub-modules includi
 The PDFIngestor class utilizes the subprocess module to call the C program pdftotext CLI utility—creating a pipeline that converts PDFs to text <https://www.xpdfreader.com/pdftotext-man.html> and then ingests the text.
 
 NOTE: Do not use the pdftotext PIP Library - purpose is to demonstrate use of the subprocess module.
+
+Visual Studio Code Notes:
+1. set cwd in launch.json file: "cwd": "/Path/To/app.py"
+2. set project to use venv cmd + shift + p paste path to .venv in selection box: https://code.visualstudio.com/docs/python/environments
