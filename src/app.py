@@ -2,12 +2,12 @@ import os
 import random
 from urllib import response
 import requests
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, abort, request, redirect, url_for
+from markupsafe import escape 
 
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
 
-from markupsafe import escape 
 
 app = Flask(__name__)
 app.debug=True
@@ -76,8 +76,21 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
     path = meme.make_meme(out_file, body, author)
-
+    # TODO: handle invalid url/img
+    
     return render_template('meme.html', path=path)
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404
+
+
+@app.route('/<name>')
+def index(name):
+    name = escape(name)
+    return render_template('page_not_found.html', name=name)
+
 
 
 if __name__ == "__main__":
