@@ -48,8 +48,8 @@ def generate_meme(path=None, body=None, author=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--path', type=str, help='path to an image file')
-    parser.add_argument('-b', '--body', type=str, help='quote body to add to the image')
-    parser.add_argument('-a', '--author' ,type=str, help='quote author to add to the image')
+    parser.add_argument('-b', '--body', type=str, help='quote body to add to image')
+    parser.add_argument('-a', '--author', type=str, help='quote author to add to image')
 
     args = parser.parse_args()
     generate_meme(args.path, args.body, args.author)
