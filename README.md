@@ -33,3 +33,6 @@ NOTE: Do not use the pdftotext PIP Library - purpose is to demonstrate use of th
 Visual Studio Code Notes:
 1. set cwd in launch.json file: "cwd": "/Path/To/app.py"
 2. set project to use venv cmd + shift + p paste path to .venv in selection box: https://code.visualstudio.com/docs/python/environments
+
+https://code.visualstudio.com/docs/python/tutorial-flask
+3. works best if root folder in vs code explorer contains app.py
