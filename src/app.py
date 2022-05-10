@@ -87,10 +87,10 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
 
-    if body == '':
-        body = 'To be or not to be'
-    if author == '':
-        author = 'Shakespeare'
+    # if body == '':
+    #     body = 'To be or not to be'
+    # if author == '':
+    #     author = 'Shakespeare'
 
     path = meme.make_meme(out_file, body, author)
     # TODO: handle invalid url/img
