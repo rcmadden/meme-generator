@@ -13,7 +13,9 @@ def generate_meme(path=None, body=None, author=None):
     quote = None
 
     if path is None:
-        images = "./_data/photos/dog/"
+        # images = "./_data/photos/dog/"
+        images = "./_data/photos/skye/"
+
         imgs = []
         # for root, dirs, files in os.walk('./_data/photos/dog/'):
         for root, dirs, files in os.walk(images):
@@ -44,7 +46,8 @@ def generate_meme(path=None, body=None, author=None):
         meme = MemeEngine('./tmp')
         result = meme.make_meme(img, body, author)
         return result
-       
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--path', type=str, help='path to an image file')
@@ -53,4 +56,3 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     generate_meme(args.path, args.body, args.author)
-

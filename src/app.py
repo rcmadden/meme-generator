@@ -1,7 +1,9 @@
+from http.client import InvalidURL
 import os
 import random
 from urllib import response
 import requests
+from requests.exceptions import MissingSchema
 from flask import Flask, render_template, abort, request, redirect, url_for
 from markupsafe import escape
 from PIL import Image
@@ -15,16 +17,20 @@ meme = MemeEngine('./static/tmp')
 
 def setup():
     """ Load all resources """
-    quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                   './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
+    # quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
+    #                './_data/DogQuotes/DogQuotesDOCX.docx',
+    #                './_data/DogQuotes/DogQuotesPDF.pdf',
+    #                './_data/DogQuotes/DogQuotesCSV.csv']
+
+    quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt']
 
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
 
-    images = "./_data/photos/dog/"
+    # images = "./_data/photos/dog/"
+    images = "./_data/photos/skye/"
+
     imgs = []
     for root, dirs, files in os.walk(images):
         imgs = [os.path.join(root, name) for name in files]
@@ -91,8 +97,15 @@ def meme_post():
     #     body = 'To be or not to be'
     # if author == '':
     #     author = 'Shakespeare'
-
-    path = meme.make_meme(out_file, body, author)
+    try:
+        print(out_file)
+        path = meme.make_meme(out_file, body, author)
+        print(out_file)
+    except MissingSchema:
+        print('hello world!')
+        out_file.raise_for_status()
+        # return render_template('meme_form.html')
+        # print('URL is not complete')
     # TODO: handle invalid url/img
 
     return render_template('meme.html', path=path)
