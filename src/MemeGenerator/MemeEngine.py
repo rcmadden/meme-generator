@@ -10,6 +10,7 @@ location on the image.
 from PIL import Image, ImageFont, ImageDraw
 from QuoteEngine import QuoteModel
 import random
+import textwrap
 
 
 class MemeEngine():
@@ -37,7 +38,9 @@ class MemeEngine():
         # PIL.UnidentifiedImageError: cannot identify image file './static/tmp.png'
         img = Image.open(img_path)
 
-        randomYAxis = random.randrange(30, 450, 50)
+        # randomYAxis = random.randrange(30, 450, 50)
+        randomYAxis = random.randrange(30, 225, 50)
+
         if width is not None:
             ratio = width/float(img.size[0])
             height = int(ratio*float(img.size[1]))
@@ -46,7 +49,16 @@ class MemeEngine():
         if meme_body is not None:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./_fonts/LilitaOne-Regular.ttf', size=25)
-            draw.text((10, randomYAxis), meme_body, font=font, fill='white')
-        img.save(self.out_dir + out_file)
+            margin = 40
+            for line in textwrap.wrap(meme_body, width=40):          
+                draw.text((margin, randomYAxis), line, font=font, fill='white')
+                randomYAxis += font.getsize(line)[1]
+
+        try:
+            print('tryna save')
+            img.save(self.out_dir + out_file)
+        except ValueError as err:
+            print(out_file)
+            print('Reason: ', err)
 
         return self.out_dir + out_file
