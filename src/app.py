@@ -22,7 +22,10 @@ def setup():
     #                './_data/DogQuotes/DogQuotesPDF.pdf',
     #                './_data/DogQuotes/DogQuotesCSV.csv']
 
-    quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt']
+    quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt',
+                   './_data/SkyQuotes/SkyQuotesDOCX.docx',
+                   './_data/SkyQuotes/SkyQuotesPDF.pdf',
+                   './_data/SkyQuotes/SkyQuotesCSV.csv']
 
     quotes = []
     for f in quote_files:
@@ -75,8 +78,13 @@ def meme_post():
         'no file to remove'
 
     img_url = request.form['image_url']
-    out_file = out_path + img_url.split('.')[-1]
-    response = requests.get(img_url)
+    image_type = img_url.split('.')[-1]
+    if image_type == 'jpg' or image_type == 'png':
+        out_file = out_path + image_type
+        response = requests.get(img_url)
+    else:
+        msg = 'url must contain .png or .jpg'
+        return render_template('meme_form.html')
 
     # try:
     #     with Image.open(response) as im:
@@ -97,16 +105,8 @@ def meme_post():
     #     body = 'To be or not to be'
     # if author == '':
     #     author = 'Shakespeare'
-    try:
-        print(out_file)
-        path = meme.make_meme(out_file, body, author)
-        print(out_file)
-    except MissingSchema:
-        print('hello world!')
-        out_file.raise_for_status()
-        # return render_template('meme_form.html')
-        # print('URL is not complete')
-    # TODO: handle invalid url/img
+    path = meme.make_meme(out_file, body, author)
+    return render_template('meme_form.html')
 
     return render_template('meme.html', path=path)
 
