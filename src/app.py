@@ -106,7 +106,7 @@ def meme_post():
     # if author == '':
     #     author = 'Shakespeare'
     path = meme.make_meme(out_file, body, author)
-    return render_template('meme_form.html')
+    # return render_template('meme_form.html')
 
     return render_template('meme.html', path=path)
 
