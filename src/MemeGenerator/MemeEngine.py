@@ -11,6 +11,7 @@ from PIL import Image, ImageFont, ImageDraw
 from QuoteEngine import QuoteModel
 import random
 import textwrap
+import os
 
 
 class MemeEngine():
@@ -34,9 +35,21 @@ class MemeEngine():
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
         out_file = '.' + self.img_path.split('.')[-1]
 
-        # TODO: catch exception for image type
-        # PIL.UnidentifiedImageError: cannot identify image file './static/tmp.png'
-        img = Image.open(img_path)
+        # TODO: catch exception for image type raise UnidentifiedImageError(PIL.UnidentifiedImageError: cannot identify image file
+        # or where is the bes place to prevent invalid file from being saved?
+        print('img_path:', img_path)
+        try:
+            img = Image.open(img_path)
+        # except UnboundLocalError as err:
+        except:
+            print('Bad Image')
+            #TODO:  create method in app.py and call it here?
+            # decide if  I really need this since it does not re-render the page
+            try:
+                os.remove(img_path)
+            except:
+                print(f'memeEng no img exits: {img_path}')
+            return
 
         # randomYAxis = random.randrange(30, 450, 50)
         randomYAxis = random.randrange(30, 225, 50)
