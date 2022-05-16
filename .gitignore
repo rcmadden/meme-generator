@@ -1,5 +1,8 @@
+Git status
 **/.DS_Store
 .venv/
 **/__pycache__/
 tmp.jpg
 **/.vscode
+photo-attributes.py
+src/static/**
