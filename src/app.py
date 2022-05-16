@@ -1,3 +1,4 @@
+from crypt import methods
 from http.client import InvalidURL
 import os
 import random
@@ -67,15 +68,18 @@ def meme_post():
     """ Create a user defined meme """
     out_path = './static/tmp.'
 
+    # TODO: 1. remove file method? repeated code in MemeEngine.py
+    # 2. handle exception explicitly
+
     try:
         os.remove(out_path + 'jpg')
     except:
-        print('no file exists')
+        print('app.py: no jpg file exists')
 
     try:
         os.remove(out_path + 'png')
     except:
-        'no file to remove'
+        'app.py: no png file to remove'
 
     img_url = request.form['image_url']
     image_type = img_url.split('.')[-1]
@@ -105,10 +109,12 @@ def meme_post():
     #     body = 'To be or not to be'
     # if author == '':
     #     author = 'Shakespeare'
-    path = meme.make_meme(out_file, body, author)
-    # return render_template('meme_form.html')
-
-    return render_template('meme.html', path=path)
+    path = meme.make_meme(out_file, body, author) 
+    if path.find('Enter valid image') != -1:
+        return render_template('meme_form.html', bad_image=path)
+    else:
+        print('no bad image found: ', path)
+        return render_template('meme.html', path=path)
 
 
 @app.errorhandler(404)

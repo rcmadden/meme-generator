@@ -8,6 +8,7 @@ location on the image.
 """
 
 from PIL import Image, ImageFont, ImageDraw
+from flask import render_template
 from QuoteEngine import QuoteModel
 import random
 import textwrap
@@ -24,12 +25,13 @@ class MemeEngine():
     def __init__(self, out_dir):
         self.out_dir = out_dir
 
-    def make_meme(self, img_path, text, author, width=500) -> str:
+    def make_meme(self, img_path, text, author, width=500, bad_image=None) -> str:
         """Create meme object."""
         self.img_path = img_path
         self.text = text
         self.author = author
         self.width = width
+        self.bad_image = bad_image
 
         meme_body = f'{self.text} -{self.author}'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
@@ -42,11 +44,13 @@ class MemeEngine():
             img = Image.open(img_path)
         # except UnboundLocalError as err:
         except:
-            print('Bad Image')
             #TODO:  create method in app.py and call it here?
             # decide if  I really need this since it does not re-render the page
             try:
                 os.remove(img_path)
+                bad_image = 'Could not open image file. Enter valid image url.'
+                return bad_image
+
             except:
                 print(f'memeEng no img exits: {img_path}')
             return
