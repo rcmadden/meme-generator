@@ -109,7 +109,7 @@ def meme_post():
     #     body = 'To be or not to be'
     # if author == '':
     #     author = 'Shakespeare'
-    path = meme.make_meme(out_file, body, author) 
+    path = meme.make_meme(out_file, body, author)
     if path.find('Enter valid image') != -1:
         return render_template('meme_form.html', bad_image=path)
     else:
