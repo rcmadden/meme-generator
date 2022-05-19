@@ -42,6 +42,9 @@ Roles-and-responsibilities of sub-modules:
             DocxIngestor.py - python-docx library
             TextIngestor.py - the native file library
             PDFIngestor.py - the subprocess module to call the C program pdftotext CLI utility<https://www.xpdfreader.com/pdftotext-man.html>
+                bash - sudo apt-get install -y xpdf
+                mac - brew install xpdf
+
             
             NOTE: Did NOT use the pdftotext PIP Library - purpose is to demonstrate use of the subprocess module.
 
