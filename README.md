@@ -44,6 +44,7 @@ Roles-and-responsibilities of sub-modules:
             PDFIngestor.py - the subprocess module to call the C program pdftotext CLI utility<https://www.xpdfreader.com/pdftotext-man.html>
                 bash - sudo apt-get install -y xpdf
                 mac - brew install xpdf
+                https://github.com/kermitt2/xpdf-4.00
 
             
             NOTE: Did NOT use the pdftotext PIP Library - purpose is to demonstrate use of the subprocess module.
@@ -57,3 +58,4 @@ Visual Studio Code Notes:
 
 https://code.visualstudio.com/docs/python/tutorial-flask
 3. works best if root folder in vs code explorer contains app.py
+4. flask will not run if not in /src directory when flask run called
