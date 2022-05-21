@@ -6,3 +6,4 @@ tmp.jpg
 **/.vscode
 photo-attributes.py
 src/static/**
+vercel.json
