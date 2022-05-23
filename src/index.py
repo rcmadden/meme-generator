@@ -13,8 +13,8 @@ from MemeGenerator import MemeEngine
 
 
 app = Flask(__name__)
+os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 meme = MemeEngine('./static/tmp')
-pa_path = '/home/russiam/meme-generator/src'
 
 
 def setup():
@@ -24,17 +24,19 @@ def setup():
     #                './_data/DogQuotes/DogQuotesPDF.pdf',
     #                './_data/DogQuotes/DogQuotesCSV.csv']
 
-    quote_files = [pa_path + '/_data/SkyQuotes/SkyQuotesTXT.txt',
-                   pa_path + '/_data/SkyQuotes/SkyQuotesDOCX.docx',
-                   pa_path + '/_data/SkyQuotes/SkyQuotesPDF.pdf',
-                   pa_path + '/_data/SkyQuotes/SkyQuotesCSV.csv']
+    # os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+
+    quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt',
+                   './_data/SkyQuotes/SkyQuotesDOCX.docx',
+                   './_data/SkyQuotes/SkyQuotesPDF.pdf',
+                   './_data/SkyQuotes/SkyQuotesCSV.csv']
 
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
 
     # images = "./_data/photos/dog/"
-    images = pa_path + "/_data/photos/skye/"
+    images = "./_data/photos/skye/"
 
     imgs = []
     for root, dirs, files in os.walk(images):
@@ -67,7 +69,7 @@ def meme_form():
 @app.route('/create', methods=['POST'])
 def meme_post():
     """ Create a user defined meme """
-    out_path = pa_path + '/static/tmp.'
+    out_path = './static/tmp.'
 
     # TODO: 1. remove file method? repeated code in MemeEngine.py
     # 2. handle exception explicitly

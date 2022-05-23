@@ -9,7 +9,7 @@ location on the image.
 
 from PIL import Image, ImageFont, ImageDraw
 from flask import render_template
-from QuoteEngine import QuoteModel
+# from QuoteEngine import QuoteModel
 import random
 import textwrap
 import os
@@ -32,6 +32,8 @@ class MemeEngine():
         self.author = author
         self.width = width
         self.bad_image = bad_image
+
+        os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 
         meme_body = f'{self.text} -{self.author}'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
@@ -67,7 +69,7 @@ class MemeEngine():
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./_fonts/LilitaOne-Regular.ttf', size=25)
             margin = 40
-            for line in textwrap.wrap(meme_body, width=40):          
+            for line in textwrap.wrap(meme_body, width=40):
                 draw.text((margin, randomYAxis), line, font=font, fill='white')
                 randomYAxis += font.getsize(line)[1]
 

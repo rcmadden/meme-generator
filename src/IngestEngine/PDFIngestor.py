@@ -23,10 +23,14 @@ class PDFIngestor(IngestInterface):
 
         for line in file_ref.readlines():
             line = line.strip('\n\r').strip()
-            if len(line) > 0 and line != 'fi fi fi':
-                parse = line.split(' - ')
-                new_quote = QuoteModel(parse[0], (parse[1]))
-                quotes.append(new_quote)
+            # print('outside: ', line, type(line), line=='fi')
+            # if (len(line) > 1 and line != 'fi') or line != 'fi fi fi':
+            if len(line) > 1:
+                if line != 'fi' and line != 'fi fi fi':
+                    parse = line.split(' - ')
+                    # print('inside: ', line, 'parse', parse)
+                    new_quote = QuoteModel(parse[0], (parse[1]))
+                    quotes.append(new_quote)
 
         file_ref.close()
         os.remove(tmp)
