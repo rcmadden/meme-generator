@@ -7,6 +7,7 @@ Adds a caption to an image (string input) with a body and author to a random
 location on the image.
 """
 
+from logging import exception
 from PIL import Image, ImageFont, ImageDraw
 from flask import render_template
 # from QuoteEngine import QuoteModel
@@ -33,7 +34,7 @@ class MemeEngine():
         self.width = width
         self.bad_image = bad_image
 
-        os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+        # os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 
         meme_body = f'{self.text} -{self.author}'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
@@ -45,16 +46,16 @@ class MemeEngine():
         try:
             img = Image.open(img_path)
         # except UnboundLocalError as err:
-        except:
+        except exception as e:
             #TODO:  create method in app.py and call it here?
             # decide if  I really need this since it does not re-render the page
             try:
                 os.remove(img_path)
-                bad_image = 'Could not open image file. Enter valid image url.'
+                bad_image = 'Could not open image file. Enter valid image url.: ' + e
                 return bad_image
 
-            except:
-                print(f'memeEng no img exits: {img_path}')
+            except exception as e:
+                print(f'memeEng no img exits: {img_path}', e)
             return
 
         # randomYAxis = random.randrange(30, 450, 50)
