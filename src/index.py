@@ -1,5 +1,6 @@
 from crypt import methods
 from http.client import InvalidURL
+from logging import exception
 import os
 import random
 from urllib import response
@@ -13,7 +14,7 @@ from MemeGenerator import MemeEngine
 
 
 app = Flask(__name__)
-os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+# os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 meme = MemeEngine('./static/tmp')
 
 
@@ -74,13 +75,13 @@ def meme_post():
 
     try:
         os.remove(out_path + 'jpg')
-    except:
-        print('app.py: no jpg file exists')
+    except exception as e:
+        print('app.py: no jpg file exists:', e)
 
     try:
         os.remove(out_path + 'png')
-    except:
-        'app.py: no png file to remove'
+    except exception as e:
+        print('app.py: no png file to remove', e)
 
     img_url = request.form['image_url']
     image_type = img_url.split('.')[-1]
@@ -100,7 +101,6 @@ def meme_post():
     # return
 
     with open(out_file, 'wb') as img:
-        print('write')
         img.write(response.content)
 
     body = request.form['body']
@@ -114,7 +114,6 @@ def meme_post():
     if path.find('Enter valid image') != -1:
         return render_template('meme_form.html', bad_image=path)
     else:
-        print('no bad image found: ', path)
         return render_template('meme.html', path=path)
 
 
