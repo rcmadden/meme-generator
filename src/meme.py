@@ -3,7 +3,6 @@ from email import parser
 import os
 import random
 from IngestEngine import Ingestor
-from QuoteEngine import QuoteModel
 from MemeGenerator import MemeEngine
 
 
@@ -17,12 +16,11 @@ def generate_meme(path=None, body=None, author=None):
         images = "./_data/photos/skye/"
 
         imgs = []
-        # for root, dirs, files in os.walk('./_data/photos/dog/'):
-        for root, dirs, files in os.walk(images):
+        for root, files in os.walk(images):
             imgs = [os.path.join(root, name) for name in files]
         img = random.choice(imgs)
     else:
-        img = path        
+        img = path
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
