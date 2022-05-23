@@ -14,7 +14,7 @@ from MemeGenerator import MemeEngine
 
 
 app = Flask(__name__)
-# os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 meme = MemeEngine('./static/tmp')
 
 

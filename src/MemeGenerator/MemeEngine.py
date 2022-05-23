@@ -34,7 +34,7 @@ class MemeEngine():
         self.width = width
         self.bad_image = bad_image
 
-        # os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+        os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 
         meme_body = f'{self.text} -{self.author}'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
