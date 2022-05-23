@@ -24,8 +24,6 @@ def setup():
     #                './_data/DogQuotes/DogQuotesPDF.pdf',
     #                './_data/DogQuotes/DogQuotesCSV.csv']
 
-    # os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
-
     quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt',
                    './_data/SkyQuotes/SkyQuotesDOCX.docx',
                    './_data/SkyQuotes/SkyQuotesPDF.pdf',
