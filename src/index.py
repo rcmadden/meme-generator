@@ -14,12 +14,16 @@ from MemeGenerator import MemeEngine
 
 
 app = Flask(__name__)
-os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+# ELABORATE: the following line required for hosting provider. Unable to set on host, but withoug it thows OSError.
+# looking for a way to set it so I do not have to comment and uncomment each time I push and pull code to git/web host.
+# os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 meme = MemeEngine('./static/tmp')
 
 
 def setup():
     """ Load all resources """
+    # ELABORATE: Possible Feature - toggle between dog Meme Generator and my custom Quote generator.
+    # Andy directior on how to implement such a feature?
     # quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
     #                './_data/DogQuotes/DogQuotesDOCX.docx',
     #                './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -70,9 +74,6 @@ def meme_post():
     """ Create a user defined meme """
     out_path = './static/tmp.'
 
-    # TODO: 1. remove file method? repeated code in MemeEngine.py
-    # 2. handle exception explicitly
-
     try:
         os.remove(out_path + 'jpg')
     except:
@@ -106,10 +107,11 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
 
-    # if body == '':
-    #     body = 'To be or not to be'
-    # if author == '':
-    #     author = 'Shakespeare'
+    if body == '':
+        body = 'To be or not to be'
+    if author == '':
+        author = 'Shakespeare'
+
     path = meme.make_meme(out_file, body, author)
     if path.find('Enter valid image') != -1:
         return render_template('meme_form.html', bad_image=path)
@@ -131,10 +133,6 @@ def index(name):
 @app.route('/about/')
 def about():
     return render_template('about.html')
-
-# @app.route('/about/')
-# def about_page(name):
-#     return render_template('about.html', name=name)
 
 
 if __name__ == "__main__":
