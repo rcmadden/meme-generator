@@ -75,13 +75,13 @@ def meme_post():
 
     try:
         os.remove(out_path + 'jpg')
-    except exception as e:
-        print('no jpg file exists:', e)
+    except:
+        print('no jpg file exists:')
 
     try:
         os.remove(out_path + 'png')
-    except exception as e:
-        print('no png file to remove', e)
+    except:
+        print('no png file to remove')
 
     img_url = request.form['image_url']
     image_type = img_url.split('.')[-1]
