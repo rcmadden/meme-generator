@@ -31,7 +31,7 @@
     <body>
         {% block body %}{% endblock %}
         <nav class="navbar fixed-top navbar-light bg-light">
-            <a class="navbar-brand mb-0 h1" href="about">QuoteSkye</a>
+            <a class="navbar-brand mb-0 h1" href="{{url_for('about')}}">QuoteSkye</a>
           </nav>
         <div class="nav">
             <a class="btn btn-primary" href="{{url_for('meme_rand')}}">Random</a>

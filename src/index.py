@@ -1,14 +1,14 @@
-from crypt import methods
-from http.client import InvalidURL
+# from crypt import methods
+# from http.client import InvalidURL
 from logging import exception
 import os
 import random
-from urllib import response
+# from urllib import response
 import requests
-from requests.exceptions import MissingSchema
+# from requests.exceptions import MissingSchema
 from flask import Flask, render_template, abort, request, redirect, url_for
 from markupsafe import escape
-from PIL import Image
+# from PIL import Image
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
 
@@ -126,6 +126,15 @@ def page_not_found(error):
 def index(name):
     name = escape(name)
     return render_template('page_not_found.html', name=name)
+
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+# @app.route('/about/')
+# def about_page(name):
+#     return render_template('about.html', name=name)
 
 
 if __name__ == "__main__":
