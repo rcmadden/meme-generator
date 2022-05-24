@@ -34,22 +34,17 @@ class MemeEngine():
         self.width = width
         self.bad_image = bad_image
 
-        os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
+        # os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 
         meme_body = f'{self.text} -{self.author}'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
         out_file = '.' + self.img_path.split('.')[-1]
 
-        # TODO: catch exception for image type raise UnidentifiedImageError(PIL.UnidentifiedImageError: cannot identify image file
-        # or where is the bes place to prevent invalid file from being saved?
-        # img = Image.open(img_path)
-
+        # ELABORATE Cathes PIL Error, but attempted to prevent bad image from being saved, which would be preferred?
         # source: https://stackoverflow.com/questions/63656089/how-to-catch-pil-unidentifiedimageerror-in-except
         try:
             img = Image.open(img_path)
         except UnidentifiedImageError:
-            #TODO:  create method in app.py and call it here?
-            # decide if  I really need this since it does not re-render the page
             try:
                 os.remove(img_path)
                 bad_image = 'Could not open image file. Enter valid image url.'
@@ -59,7 +54,6 @@ class MemeEngine():
                 print(f'memeEng no img exits: {img_path}')
             return
 
-        # randomYAxis = random.randrange(30, 450, 50)
         randomYAxis = random.randrange(30, 225, 50)
 
         if width is not None:
@@ -76,10 +70,8 @@ class MemeEngine():
                 randomYAxis += font.getsize(line)[1]
 
         try:
-            print('tryna save')
             img.save(self.out_dir + out_file)
         except ValueError as err:
-            print(out_file)
             print('Reason: ', err)
 
         return self.out_dir + out_file
