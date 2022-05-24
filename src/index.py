@@ -89,8 +89,8 @@ def meme_post():
         out_file = out_path + image_type
         response = requests.get(img_url)
     else:
-        msg = 'url must contain .png or .jpg'
-        return render_template('meme_form.html')
+        bad_image = 'url must end with .png or .jpg'
+        return render_template('meme_form.html', bad_image=bad_image)
 
     # try:
     #     with Image.open(response) as im:
