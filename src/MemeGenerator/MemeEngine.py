@@ -8,7 +8,7 @@ location on the image.
 """
 
 from logging import exception
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, UnidentifiedImageError
 from flask import render_template
 # from QuoteEngine import QuoteModel
 import random
@@ -42,20 +42,21 @@ class MemeEngine():
 
         # TODO: catch exception for image type raise UnidentifiedImageError(PIL.UnidentifiedImageError: cannot identify image file
         # or where is the bes place to prevent invalid file from being saved?
-        print('img_path:', img_path)
+        # img = Image.open(img_path)
+
+        # source: https://stackoverflow.com/questions/63656089/how-to-catch-pil-unidentifiedimageerror-in-except
         try:
             img = Image.open(img_path)
-        # except UnboundLocalError as err:
-        except exception as e:
+        except UnidentifiedImageError:
             #TODO:  create method in app.py and call it here?
             # decide if  I really need this since it does not re-render the page
             try:
                 os.remove(img_path)
-                bad_image = 'Could not open image file. Enter valid image url.: ' + e
+                bad_image = 'Could not open image file. Enter valid image url.'
                 return bad_image
 
-            except exception as e:
-                print(f'memeEng no img exits: {img_path}', e)
+            except:
+                print(f'memeEng no img exits: {img_path}')
             return
 
         # randomYAxis = random.randrange(30, 450, 50)
