@@ -30,7 +30,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-
+        <nav class="navbar fixed-top navbar-light bg-light">
+            <a class="navbar-brand mb-0 h1" href="about">QuoteSkye</a>
+          </nav>
         <div class="nav">
             <a class="btn btn-primary" href="{{url_for('meme_rand')}}">Random</a>
             <a class="btn btn-outline-primary" href="{{url_for('meme_form')}}">Creator</a>    
