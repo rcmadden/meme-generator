@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Quote Generator{% endblock %}
 {% block body %}
-<body>
-    <h1>About</h1>
-    <p class="mr-3" style="width: 600px">Quote Generator selects a random quote from a text, pdf and .docx files and writes it over a random image from the Isle of Skye, Scottland. Images from <a href='https://unsplash.com/s/photos/skye-island' target="_blank">unsplash.com</a> Also accepts dynamic user input through a command-line tool and this web service. 
-    </p>
-    <h2>Built With</h2>
-    <p>Python</p>
-    <p>Flask</p>
-    <p>Boostrap</p>
-    <h2>Source Code</h2>
-    <a href="https://github.com/rcmadden/meme-generator" target="_blank">github</p>
-</body>
+    <div class="flex-md-equal w-100 my-md-3 pl-md-3 nav-pad">
+        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+          <div class="my-3 p-3">
+            <h1 class="display-5">About</h1>
+            <p class="lead">QuoteSkye is a multimedia application to dynamically generate random quotes, including a random image with the overlaid text.</p>
+            <h2>The application:</h2>
+    <ul class="list-group list-group-light">
+      <li class="list-group-item">Reads quotes from a variety of filetypes (PDF, Word Documents, CSVs, Text files).</li>
+      <li class="list-group-item">Loads, manipulates, and saves images.</li>
+      <li class="list-group-item">Accepts dynamic user input through this Flask web service and a command-line tool.</li>
+    </ul>
+    <p>Images are from the Isle of Skye in Scottland. Source:<a href='https://unsplash.com/s/photos/skye-island' target="_blank">unsplash.com</a></p>
+    
+          </div>
+        </div>
+        <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+          <div class="my-3 py-3">
+            <h2 class="display-5">Built With</h2>
+            <p class="lead">Python, Flask, xpdf, Bootstrap, Git</p>
+          </div>
+        </div>
+      </div>
+  <p></p>
 {% endblock %}
