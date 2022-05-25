@@ -1,16 +1,12 @@
-# from crypt import methods
-# from http.client import InvalidURL
 from logging import exception
 import os
 import random
-# from urllib import response
 import requests
-# from requests.exceptions import MissingSchema
 from flask import Flask, render_template, abort, request, redirect, url_for
 from markupsafe import escape
-# from PIL import Image
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
+
 
 
 app = Flask(__name__)
@@ -92,7 +88,7 @@ def meme_post():
     else:
         bad_image = 'url must end with .png or .jpg'
         return render_template('meme_form.html', bad_image=bad_image)
-
+    # ELABORATE: is tehre a way to check the file before saving?
     # try:
     #     with Image.open(response) as im:
     #         print('verify')
@@ -106,7 +102,9 @@ def meme_post():
 
     body = request.form['body']
     author = request.form['author']
-
+    
+    # prints default text if none entered in Creator
+    # only works sometimes
     if body == '':
         body = 'To be or not to be'
     if author == '':

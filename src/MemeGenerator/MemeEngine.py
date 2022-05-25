@@ -10,7 +10,6 @@ location on the image.
 from logging import exception
 from PIL import Image, ImageFont, ImageDraw, UnidentifiedImageError
 from flask import render_template
-# from QuoteEngine import QuoteModel
 import random
 import textwrap
 import os

@@ -4,6 +4,7 @@ import os
 import random
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
+from PIL import Image
 
 
 def generate_meme(path=None, body=None, author=None):
@@ -16,7 +17,7 @@ def generate_meme(path=None, body=None, author=None):
         images = "./_data/photos/skye/"
 
         imgs = []
-        for root, files in os.walk(images):
+        for root, dir, files in os.walk(images):
             imgs = [os.path.join(root, name) for name in files]
         img = random.choice(imgs)
     else:
@@ -27,6 +28,11 @@ def generate_meme(path=None, body=None, author=None):
                        './_data/DogQuotes/DogQuotesDOCX.docx',
                        './_data/DogQuotes/DogQuotesPDF.pdf',
                        './_data/DogQuotes/DogQuotesCSV.csv']
+
+        # quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt',
+        #                './_data/SkyQuotes/SkyQuotesDOCX.docx',
+        #                './_data/SkyQuotes/SkyQuotesPDF.pdf',
+        #                './_data/SkyQuotes/SkyQuotesCSV.csv']
         quotes = []
         for f in quote_files:
             quotes.extend(Ingestor.parse(f))
@@ -34,6 +40,8 @@ def generate_meme(path=None, body=None, author=None):
         quote = random.choice(quotes)
         meme = MemeEngine('./tmp')
         result = meme.make_meme(img, quote.body, quote.author)
+        image = Image.open(result)
+        image.show()
         return result
 
     elif len(body) > 40:
@@ -43,6 +51,9 @@ def generate_meme(path=None, body=None, author=None):
     else:
         meme = MemeEngine('./tmp')
         result = meme.make_meme(img, body, author)
+        image = Image.open(result)
+        image.show()     
+        print(result)
         return result
 
 
