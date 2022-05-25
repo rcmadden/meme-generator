@@ -1,23 +1,25 @@
-from crypt import methods
-from http.client import InvalidURL
+from logging import exception
 import os
 import random
-from urllib import response
 import requests
-from requests.exceptions import MissingSchema
 from flask import Flask, render_template, abort, request, redirect, url_for
 from markupsafe import escape
-from PIL import Image
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
 
 
+
 app = Flask(__name__)
+# ELABORATE: the following line required for hosting provider. Unable to set on host, but withoug it thows OSError.
+# looking for a way to set it so I do not have to comment and uncomment each time I push and pull code to git/web host.
+# os.chdir('/home/russiam/meme-generator/src') # set pythonanywhere cwd
 meme = MemeEngine('./static/tmp')
 
 
 def setup():
     """ Load all resources """
+    # ELABORATE: Possible Feature - toggle between dog Meme Generator and my custom Quote generator.
+    # Andy directior on how to implement such a feature?
     # quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
     #                './_data/DogQuotes/DogQuotesDOCX.docx',
     #                './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -68,18 +70,15 @@ def meme_post():
     """ Create a user defined meme """
     out_path = './static/tmp.'
 
-    # TODO: 1. remove file method? repeated code in MemeEngine.py
-    # 2. handle exception explicitly
-
     try:
         os.remove(out_path + 'jpg')
     except:
-        print('app.py: no jpg file exists')
+        print('no jpg file exists:')
 
     try:
         os.remove(out_path + 'png')
     except:
-        'app.py: no png file to remove'
+        print('no png file to remove')
 
     img_url = request.form['image_url']
     image_type = img_url.split('.')[-1]
@@ -87,9 +86,9 @@ def meme_post():
         out_file = out_path + image_type
         response = requests.get(img_url)
     else:
-        msg = 'url must contain .png or .jpg'
-        return render_template('meme_form.html')
-
+        bad_image = 'url must end with .png or .jpg'
+        return render_template('meme_form.html', bad_image=bad_image)
+    # ELABORATE: is tehre a way to check the file before saving?
     # try:
     #     with Image.open(response) as im:
     #         print('verify')
@@ -99,21 +98,22 @@ def meme_post():
     # return
 
     with open(out_file, 'wb') as img:
-        print('write')
         img.write(response.content)
 
     body = request.form['body']
     author = request.form['author']
+    
+    # prints default text if none entered in Creator
+    # only works sometimes
+    if body == '':
+        body = 'To be or not to be'
+    if author == '':
+        author = 'Shakespeare'
 
-    # if body == '':
-    #     body = 'To be or not to be'
-    # if author == '':
-    #     author = 'Shakespeare'
     path = meme.make_meme(out_file, body, author)
     if path.find('Enter valid image') != -1:
         return render_template('meme_form.html', bad_image=path)
     else:
-        print('no bad image found: ', path)
         return render_template('meme.html', path=path)
 
 
@@ -126,6 +126,11 @@ def page_not_found(error):
 def index(name):
     name = escape(name)
     return render_template('page_not_found.html', name=name)
+
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
 
 
 if __name__ == "__main__":
