@@ -1,8 +1,7 @@
-from logging import exception
 import os
 import random
 import requests
-from flask import Flask, render_template, abort, request, redirect, url_for
+from flask import Flask, render_template, request
 from markupsafe import escape
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
