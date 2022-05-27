@@ -1,12 +1,11 @@
-from logging import exception
+# from logging import exception
 import os
 import random
 import requests
-from flask import Flask, render_template, abort, request, redirect, url_for
+from flask import Flask, render_template, request
 from markupsafe import escape
 from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
-
 
 
 app = Flask(__name__)
@@ -102,7 +101,7 @@ def meme_post():
 
     body = request.form['body']
     author = request.form['author']
-    
+
     # prints default text if none entered in Creator
     # only works sometimes
     if body == '':

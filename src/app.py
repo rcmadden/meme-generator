@@ -8,7 +8,6 @@ from IngestEngine import Ingestor
 from MemeGenerator import MemeEngine
 
 
-
 app = Flask(__name__)
 # ELABORATE: the following line required for hosting provider. Unable to set on host, but withoug it thows OSError.
 # looking for a way to set it so I do not have to comment and uncomment each time I push and pull code to git/web host.
@@ -88,7 +87,7 @@ def meme_post():
     else:
         bad_image = 'url must end with .png or .jpg'
         return render_template('meme_form.html', bad_image=bad_image)
-    # ELABORATE: is tehre a way to check the file before saving?
+    # ELABORATE: is there a way to check the file before saving?
     # try:
     #     with Image.open(response) as im:
     #         print('verify')
