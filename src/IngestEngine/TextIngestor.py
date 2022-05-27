@@ -13,7 +13,7 @@ class TextIngestor(IngestInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
             raise Exception('cannot ingest exception')
-        with open(path) as file_ref:
+        with open(path, encoding='utf-8') as file_ref:
             quotes = []
             lines = file_ref.readlines()
             for line in lines:
