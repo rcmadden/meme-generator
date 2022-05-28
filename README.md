@@ -44,7 +44,8 @@ Roles-and-responsibilities of sub-modules:
             PDFIngestor.py - the subprocess module to call the C program pdftotext CLI utility<https://www.xpdfreader.com/pdftotext-man.html>
                 bash - sudo apt-get install -y xpdf
                 mac - brew install xpdf
-                https://github.com/kermitt2/xpdf-4.00
+                https://github.com/kermitt2/lsxpdf-4.00
+                * follow install instructions and ensure to include path to CMAKEList.txt
 
             
             NOTE: Did NOT use the pdftotext PIP Library - purpose is to demonstrate use of the subprocess module.
