@@ -5,6 +5,5 @@ Git status
 tmp.jpg
 **/.vscode
 photo-attributes.py
-src/static/**
 vercel.json
 src/_assets/**
