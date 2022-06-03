@@ -8,9 +8,11 @@ from MemeGenerator import MemeEngine
 
 
 app = Flask(__name__)
-# ELABORATE: the following line required for hosting provider. Unable to set on host, but withoug it thows OSError.
-# looking for a way to set it so I do not have to comment and uncomment each time I push and pull code to git/web host.
-os.chdir('/home/russia/meme-generator/src')  # set pythonanywhere cwd
+# set pythonanywhere cwd
+if os.uname().sysname == 'Linux':
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    os.chdir(dir_path)
+
 meme = MemeEngine('./static/tmp')
 
 
