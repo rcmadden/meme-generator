@@ -9,7 +9,7 @@ The application:
 
     Accepts dynamic user input through a command-line tool and a Flask web service.
 
-    Random selects a random image and a random quote. Then writes the quote text to a random location on the 'y' axis location of the image.
+    Random selects a random image and a random quote. Then writes the quote text to a random location on the 'y' axis of the image.
 
 Instructions for setting up and running the program: 
     Includes a simple cli utlity in meme.py. The utility can be run from the terminal by invoking with:
