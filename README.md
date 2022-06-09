@@ -32,7 +32,7 @@ python3 meme.py
 Roles-and-responsibilities of sub-modules:
 
     A. QuoteEngine
-        -  Responsible for ingeting many types of files that contain quotes.
+        - Responsible for ingesting many types of files that contain quotes.
         - A quote contains a body and an author: 
             "This is a quote body" - Author
     B. IngestEngine
