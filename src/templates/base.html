@@ -53,14 +53,11 @@
         </style>
     </head>
     <body>
-        <!-- <nav class="navbar navbar-light bg-light"> -->
-        <!-- <nav class="navbar"> -->
-        <nav class="navbar navbar-dark bg-primary">
-
-
-            <a class="navbar-brand" href="{{url_for('about')}}">QuoteSkye</a>
-          </nav>
-
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-primary bg-light">
+                <a class="navbar-brand mb-01 h1" href="{{url_for('about')}}">QuoteSkye</a>
+            </nav>
+        </div>
         {% block body %}{% endblock %}
         
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
