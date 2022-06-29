@@ -49,6 +49,10 @@
             }
         }
 
+        .share-btn { 
+            max-width: 500px;
+        }
+
 
         </style>
     </head>
@@ -58,6 +62,7 @@
                 <a class="navbar-brand mb-01 h1" href="{{url_for('about')}}">QuoteSkye</a>
             </nav>
         </div>
+        
         {% block body %}{% endblock %}
         
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
