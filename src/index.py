@@ -133,5 +133,9 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/share/')
+def share():
+    return render_template('share.html')
+
 if __name__ == "__main__":
     app.run()
