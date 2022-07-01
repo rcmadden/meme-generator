@@ -149,7 +149,7 @@
         </button>  
     </div>
 
-    <img src="{{ path }}" />
+    <img id="quote" src="{{ path }}" />
 
     <svg class="hidden">
         <defs>
@@ -166,11 +166,17 @@
         const shareDialog = document.querySelector('.share-dialog');
         const closeButton = document.querySelector('.close-button');
 
+        // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#shareable_file_types
+        const files = document.querySelector('.quote')
         shareButton.addEventListener('click', event => {
+        const url = ''
+        const file = new File([], "https://www.quoteskye.com/static/tmp.jpg", { type: "image/jpg" });
+       
         if (navigator.share) { 
-        navigator.share({
-            title: 'WebShare API Demo',
-            url: 'https://quoteskye.com'
+            navigator.share({
+            title: 'QuoteSkye.com Share',
+            files: [file]
+            // url: 'https://quoteskye.com'
             }).then(() => {
             console.log('Thanks for sharing!');
             })
