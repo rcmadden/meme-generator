@@ -31,6 +31,7 @@ class MemeEngine():
         self.width = width
         self.bad_image = bad_image
         meme_body = f'{self.text} -{self.author}'
+        watermark = 'Made on: QuoteSkye.com'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
         out_file = '.' + self.img_path.split('.')[-1]
 
@@ -54,15 +55,20 @@ class MemeEngine():
             ratio = width/float(img.size[0])
             height = int(ratio*float(img.size[1]))
             img = img.resize((width, height), Image.Resampling.NEAREST)
-
+            
         if meme_body is not None:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./_fonts/LilitaOne-Regular.ttf', size=25)
+            watermarkFont = ImageFont.truetype('./_fonts/LilitaOne-Regular.ttf', size=15)
+            waterMarkWidth = font.getlength(watermark)
             margin = 40
+
             for line in textwrap.wrap(meme_body, width=40):
                 draw.text((margin, randomYAxis), line, font=font, fill='white')
                 randomYAxis += font.getsize(line)[1]
 
+            draw.text(((img.width + (margin*2))-(waterMarkWidth), img.height-10), watermark, fill="white", anchor="ls", font=watermarkFont)
+ 
         try:
             img.save(self.out_dir + out_file)
         except ValueError as err:
