@@ -211,11 +211,21 @@
   const shareDialog = document.querySelector('.share-dialog');
   const closeButton = document.querySelector('.close-button');
 
-  shareButton.addEventListener('click', event => {
+  const urlToFile = async (url) => {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const file = new File([blob], "quote.jpg", { type: blob.type });
+            return file;
+          };
+
+  shareButton.addEventListener('click', async () => {
     if (navigator.share) { 
-    navigator.share({
-        title: 'Share Quote',
-        url: 'https://www.QuoteSkye.com'
+      const file = await urlToFile("{{ path }}");
+  
+      navigator.share({
+        // title: 'QuoteSkye.com Quote',
+        files: [file],
+        // url: 'www.QuoteSkye.com'
       }).then(() => {
         console.log('Thanks for sharing!');
       })
@@ -229,114 +239,4 @@
     shareDialog.classList.remove('is-open');
   });
 </script>
-
-    <!-- <script>
-    
-          const shareButton = document.querySelector('.share-button');
-          const shareDialog = document.querySelector('.share-dialog');
-          const closeButton = document.querySelector('.close-button');
-
-          const urlToFile = async (url) => {
-            const response = await fetch(url);
-            const blob = await response.blob();
-            const file = new File([blob], "quote.jpg", { type: blob.type });
-            return file;
-          };
-
-          shareButton.addEventListener("click", async () => {
-          if (window.navigator.share) {
-            const file = await urlToFile(
-              "{{ path }}"
-            );
-            const data = {
-              files: [file],
-              // title: "Quote",
-              // url: "https://www.QuoteSkye.com",
-              // text: "Create custom image quotes or memes on QuoteSkye.com",
-            };
-
-            // if (!navigator.canShare || !navigator.canShare({ files: files })) {
-            //   alert("Unsupported share feature");
-            //   return;
-            // }
-            const allSupported = Object.entries(data).every(([key, value]) => {
-              return navigator.canShare({ [key]: value });
-            });
-            
-            if (allSupported) {
-              await navigator.share(data);
-            }
-
-            navigator
-              .share(data)
-              .then(() => console.log("Share was successful."))
-              .catch((error) => console.log("Sharing failed", error));
-            } else {
-              await shareFallback();
-              alert(`Your browser or operating system doesn't support sharing files.`);
-              // shareDialog.classList.add('is-open');
-              shareDialog.classList.remove('is-open');
-            }
-          });
-          closeButton.addEventListener('click', event => {
-            shareDialog.classList.remove('is-open');
-          });
-          
-          // url: "<a href='https://www.quoteskye.com'>quoteskye.com<a/>"
-
-    </script> -->
-
-    <!-- <script>  
-      // const shareButton = document.querySelector('.share-button');
-
-      function shareNative() {
-        return new Promise(async (resolve) => {
-          const shareUrl =
-            `${window.location.protocol}//${window.location.host}`;
-        await navigator.share({
-          text: 'How to implement the Web Share API and a fallback',
-          url: shareUrl,
-        }); 
-        resolve();
-        });
-      }
-      
-      function shareFallback() {
-        return new Promise(async (resolve) => {
-          const webSocialShare =
-            // document.querySelector('web-social-share');
-            document.querySelector('.share-button');
-          if (!webSocialShare || !window) {
-            return;
-          }
-          const shareUrl =
-           `${window.location.protocol}//${window.location.host}`;
-  
-          const share = {
-            displayNames: true,
-            config: [{
-              twitter: {
-                socialShareUrl: shareUrl,
-                socialSharePopupWidth: 300,
-                socialSharePopupHeight: 400
-              }
-            },{
-              email: {
-                socialShareBody: shareUrl
-              }
-            }, {
-              whatsapp: {
-                socialShareUrl: shareUrl
-              }
-            }]
-          };
-          // The configuration, set the share options
-          webSocialShare.share = share;
-          // Show/open the share actions
-          webSocialShare.show = true;
-    
-          resolve();
-        });
-      }
-    </script> -->
 {% endblock %}
