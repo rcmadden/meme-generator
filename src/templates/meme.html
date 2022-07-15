@@ -24,26 +24,26 @@
       svg {
         width: 20px;
         height: 20px;
-        /* margin-right: 7px; */
+        margin-right: 7px;
       }
       
       button, .button {
-        display: inline-flex;
+        /* display: inline-flex; */
         /* align-items: center; */
         /* justify-content: center; */
         align-items: right; 
         justify-content: right;
         height: auto;
-        /* padding-top: 8px; */
-        /* padding-bottom: 8px; */
-        /* color: #777; */
-        /* text-align: center; */
-        text-align: right;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color: #777;
+        text-align: center;
+        /* text-align: right; */
         font-size: 14px;
         font-weight: 500;
         line-height: 1.1;
         /* letter-spacing: 2px; */
-        text-transform: capitalize;
+        /* text-transform: capitalize; */
         text-decoration: none;
         white-space: nowrap;
         border-radius: 4px;
@@ -55,17 +55,24 @@
         border-color: #cdd;
       }
       
-      .share-button, .copy-link {
-        /* padding-left: 30px; */
-        /* padding-right: 30px; */
+      /* .share-button, .copy-link { */
+      .copy-link {
+        padding-left: 30px;
+        padding-right: 30px;
       }
       
+      .share-dialog {
+        display: inline-flex;
+      }
       .share-button, .share-dialog {
         max-width: 510px;
-        /* position: absolute; */
-        /* top: 50%; */
-        /* left: 50%; */
-        /* transform: translate(-50%, -50%); */
+      }
+
+      .social-button .share-dialog {
+        position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       
       .share-dialog {
@@ -85,6 +92,10 @@
         z-index: 2;
       }
       
+      .share-dialog.is-open ~.share-button{
+        display: none;
+      }
+
       header {
         display: flex;
         justify-content: space-between;
@@ -129,41 +140,97 @@
     <div class="share-dialog">
     <header>
       <h3 class="dialog-title">Share this quote</h3>
-      <button class="close-button"><svg><use href="#close"></use></svg></button>
+      <button class="close-button"><svg><use href="#close">
+      </use></svg></button>
     </header>
     
     <div class="targets">
-
+      <a class="button social-button">
+        <svg>
+          <use href="#facebook"></use>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      
+      <a class="button social-button">
+        <svg>
+          <use href="#twitter"></use>
+        </svg>
+        <span>Twitter</span>
+      </a>
+      
+      <a class="button social-button">
+        <svg>
+          <use href="#linkedin"></use>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      
+      <a class="button social-button">
+        <svg>
+          <use href="#email"></use>
+        </svg>
+        <span>Email</span>
+      </a>
     </div>
-        <div class="link">
-            <div class="pen-url">https://www.quoteskye.com/static/tmp.jpg</div>
-            <!-- <div class="pen-url">{{ path }}</div> -->
-
-            <button class="copy-link">Copy Link</button>
-        </div>
+    <div class="link">
+          <div class="pen-url">https://www.quoteskye.com/static/tmp.jpg</div>
+          <!-- <div class="pen-url">{{ path }}</div> -->
+          <button class="copy-link">Copy Link</button>
+      </div>
     </div>
 
     <div class="container my-1 p-1 text-right share-button">
-            <button type="button"  class="share-button btn btn-outline-secondary btn-sm">Share
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-              </svg>
-        </button>  
+      <button class="share-button btn btn-outline-secondary btn-sm" type="button">Share
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+          <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+        </svg>
+      </button>  
     </div>
 
     <img id="quote" src="{{ path }}" />
 
     <svg class="hidden">
-        <defs>
-            <symbol id="twitter" viewBox="0 0 24 24" fill="#1da1f2" stroke="#1da1f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></symbol>
-            
-            <symbol id="email" viewBox="0 0 24 24" fill="#777" stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></symbol>
+      <defs>
+        <symbol id="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></symbol>
         
-            <symbol id="close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></symbol>
-        </defs>
-      </svg>
+        <symbol id="facebook" viewBox="0 0 24 24" fill="#3b5998" stroke="#3b5998" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></symbol>
+        
+        <symbol id="twitter" viewBox="0 0 24 24" fill="#1da1f2" stroke="#1da1f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></symbol>
+        
+        <symbol id="email" viewBox="0 0 24 24" fill="#777" stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></symbol>
+        
+        <symbol id="linkedin" viewBox="0 0 24 24" fill="#0077B5" stroke="#0077B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></symbol>
+        
+        <symbol id="close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></symbol>
+      </defs>
+    </svg>
 
-    <script>
+<script>
+  const shareButton = document.querySelector('.share-button');
+  const shareDialog = document.querySelector('.share-dialog');
+  const closeButton = document.querySelector('.close-button');
+
+  shareButton.addEventListener('click', event => {
+    if (navigator.share) { 
+    navigator.share({
+        title: 'Share Quote',
+        url: 'https://www.QuoteSkye.com'
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch(console.error);
+      } else {
+          shareDialog.classList.add('is-open');
+      }
+  });
+
+  closeButton.addEventListener('click', event => {
+    shareDialog.classList.remove('is-open');
+  });
+</script>
+
+    <!-- <script>
     
           const shareButton = document.querySelector('.share-button');
           const shareDialog = document.querySelector('.share-dialog');
@@ -179,30 +246,97 @@
           shareButton.addEventListener("click", async () => {
           if (window.navigator.share) {
             const file = await urlToFile(
-            "{{ path }}"
+              "{{ path }}"
             );
-            const files = [file];
+            const data = {
+              files: [file],
+              // title: "Quote",
+              // url: "https://www.QuoteSkye.com",
+              // text: "Create custom image quotes or memes on QuoteSkye.com",
+            };
 
-            if (!navigator.canShare || !navigator.canShare({ files: files })) {
-              alert("Unsupported share feature");
-              return;
+            // if (!navigator.canShare || !navigator.canShare({ files: files })) {
+            //   alert("Unsupported share feature");
+            //   return;
+            // }
+            const allSupported = Object.entries(data).every(([key, value]) => {
+              return navigator.canShare({ [key]: value });
+            });
+            
+            if (allSupported) {
+              await navigator.share(data);
             }
 
             navigator
-            .share({
-              files: files,
-              title: "QuoteSkye.com Quote"
-            })
-            .then(() => console.log("Share was successful."))
-            .catch((error) => console.log("Sharing failed", error));
-          } else {
-            alert(`Your browser or operating system doesn't support sharing files.`);
-            // shareDialog.classList.add('is-open');
-            shareDialog.classList.remove('is-open');
-          }
-        });
+              .share(data)
+              .then(() => console.log("Share was successful."))
+              .catch((error) => console.log("Sharing failed", error));
+            } else {
+              await shareFallback();
+              alert(`Your browser or operating system doesn't support sharing files.`);
+              // shareDialog.classList.add('is-open');
+              shareDialog.classList.remove('is-open');
+            }
+          });
           closeButton.addEventListener('click', event => {
             shareDialog.classList.remove('is-open');
-          }); 
-    </script>
+          });
+          
+          // url: "<a href='https://www.quoteskye.com'>quoteskye.com<a/>"
+
+    </script> -->
+
+    <!-- <script>  
+      // const shareButton = document.querySelector('.share-button');
+
+      function shareNative() {
+        return new Promise(async (resolve) => {
+          const shareUrl =
+            `${window.location.protocol}//${window.location.host}`;
+        await navigator.share({
+          text: 'How to implement the Web Share API and a fallback',
+          url: shareUrl,
+        }); 
+        resolve();
+        });
+      }
+      
+      function shareFallback() {
+        return new Promise(async (resolve) => {
+          const webSocialShare =
+            // document.querySelector('web-social-share');
+            document.querySelector('.share-button');
+          if (!webSocialShare || !window) {
+            return;
+          }
+          const shareUrl =
+           `${window.location.protocol}//${window.location.host}`;
+  
+          const share = {
+            displayNames: true,
+            config: [{
+              twitter: {
+                socialShareUrl: shareUrl,
+                socialSharePopupWidth: 300,
+                socialSharePopupHeight: 400
+              }
+            },{
+              email: {
+                socialShareBody: shareUrl
+              }
+            }, {
+              whatsapp: {
+                socialShareUrl: shareUrl
+              }
+            }]
+          };
+          // The configuration, set the share options
+          webSocialShare.share = share;
+          // Show/open the share actions
+          webSocialShare.show = true;
+    
+          resolve();
+        });
+      }
+    </script> -->
 {% endblock %}
