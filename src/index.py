@@ -102,7 +102,7 @@ def meme_post():
 
     body = request.form['body']
     author = request.form['author']
-    
+
     # prints default text if none entered in Creator
     # only works sometimes
     if body == '':
@@ -132,10 +132,6 @@ def index(name):
 def about():
     return render_template('about.html')
 
-
-@app.route('/share/')
-def share():
-    return render_template('share.html')
 
 if __name__ == "__main__":
     app.run()
