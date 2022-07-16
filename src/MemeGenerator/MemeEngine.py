@@ -31,7 +31,7 @@ class MemeEngine():
         self.width = width
         self.bad_image = bad_image
         meme_body = f'{self.text} -{self.author}'
-        watermark = 'Made on: QuoteSkye.com'
+        watermark = 'QuoteSkye.com'
         # meme_body = QuoteModel.model_content(self.text, self.author) #TypeError: QuoteModel.model_content() takes 1 positional argument but 2 were given
         out_file = '.' + self.img_path.split('.')[-1]
 
