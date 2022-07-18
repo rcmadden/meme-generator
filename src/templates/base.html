@@ -7,10 +7,25 @@
         <!-- <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">         -->
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> 
-        <meta name="description" content="Random quote generator and mobile-friendly meme generator. Caption images or link your own images to make custom memes" />
-        <meta name="keywords" content="qutoe genenerator, inspirational quotes, meme generator, meme maker, meme, caption" />
-        
-        <title>Meme Generator - {% block title %}{% endblock %}</title>
+        <meta name="description" content="Random quote generator and custome quote creator. Mobile-friendly meme generator. Caption images or link your own images to make custom quotes or memes." />
+        <meta name="keywords" content="qutoe genenerator, inspirational quotes, quote maker, meme generator, meme maker, meme, caption" />
+        <title>Quote Generator - {% block title %}{% endblock %}</title>
+
+        <!-- Facebook -->
+        <meta property="og:title" content="Insperational Quotes | Quote Generator">
+        <meta property="og:image" content="https://www.quoteskye.com/static/tmp.jpg?raw=true"> 
+        <meta property="og:url" content="https://www.quoteskye.com"/>
+        <meta property="og:type"          content="website" />
+        <meta property="og:description"   content="Inspirational quotes, random quote generator and custom quote maker." />
+
+        <!-- Twitter --> <!-- You can have different summary for Twitter! -->
+        <meta property="twitter:card" content="Insperational Quotes | Quote Generator">
+        <meta property="twitter:url" content="https://www.quoteskye.com">
+        <meta property="twitter:title" content="Inspirational quotes, random quote generator and custom quote maker.">
+        <meta property="twitter:description" content="Inspirational quotes, random quote generator and custom quote maker.">
+        <meta property="twitter:image" content="https://www.quoteskye.com/static/tmp.jpg?raw=true">
+
+        <!-- Analytics -->
         <script defer data-domain="quoteskye.com" src="https://plausible.io/js/plausible.js"></script>
         <style>
             body {
@@ -53,6 +68,8 @@
         </style>
     </head>
     <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0" nonce="rWT9wDmW"></script>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-primary bg-light">
                 <a class="navbar-brand mb-01 h1" href="{{url_for('about')}}">QuoteSkye</a>
