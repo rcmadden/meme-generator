@@ -67,7 +67,7 @@ class MemeEngine():
                 draw.text((margin, randomYAxis), line, font=font, fill='white')
                 randomYAxis += font.getsize(line)[1]
 
-            draw.text(((img.width + (margin*2))-(waterMarkWidth), img.height-10), watermark, fill="white", anchor="ls", font=watermarkFont)
+            draw.text((((img.width + (margin))-(waterMarkWidth)), img.height-10), watermark, fill="white", anchor="ls", font=watermarkFont)
  
         try:
             img.save(self.out_dir + out_file)
