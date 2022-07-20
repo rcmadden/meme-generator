@@ -45,7 +45,7 @@ Roles-and-responsibilities of sub-modules:
             To Install:
                 bash - sudo apt-get install -y xpdf
                 mac - brew install xpdf
-                https://github.com/kermitt2/lsxpdf-4.00
+                https://github.com/kermitt2/xpdf-4.00
                 * follow install instructions and ensure to include path to CMAKEList.txt
             
                 NOTE: Did NOT use the pdftotext PIP Library - purpose is to demonstrate use of the Python subprocess module.
