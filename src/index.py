@@ -27,7 +27,6 @@ def setup():
 
     quote_files = ['./_data/SkyQuotes/SkyQuotesTXT.txt',
                    './_data/SkyQuotes/SkyQuotesDOCX.docx',
-                   './_data/SkyQuotes/SkyQuotesPDF.pdf',
                    './_data/SkyQuotes/SkyQuotesCSV.csv']
 
     quotes = []

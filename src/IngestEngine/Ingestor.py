@@ -9,7 +9,7 @@ from QuoteEngine import QuoteModel
 
 
 class Ingestor(IngestInterface):
-    ingestors = [DocxIngestor, CSVIngestor, PDFIngestor, TextIngestor]
+    ingestors = [DocxIngestor, CSVIngestor, TextIngestor]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
