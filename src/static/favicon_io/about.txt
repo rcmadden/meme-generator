@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Faustina
+- Font Author: Copyright 2019 The Faustina Project Authors (https://github.com/Omnibus-Type/Faustina)
+- Font Source: http://fonts.gstatic.com/s/faustina/v16/XLY4IZPxYpJfTbZAFXWzNT2SO8wpWHlsAoYvGVWWe8tbEg.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

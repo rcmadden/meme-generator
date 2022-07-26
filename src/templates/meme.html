@@ -174,9 +174,13 @@
       </a>
     </div>
     <div class="link">
-          <div class="pen-url">https://www.quoteskye.com/static/tmp.jpg</div>
+      <a href="#">
+
+          <div class="pen-url" id="quote-url">https://www.quoteskye.com/static/tmp.jpg</div>
           <!-- <div class="pen-url">{{ path }}</div> -->
-          <button class="copy-link">Copy Link</button>
+            <button class="copy-link">Copy Link</button>
+            
+          </a>
       </div>
     </div>
 
@@ -212,11 +216,12 @@
   const closeButton = document.querySelector('.close-button');
 
   const urlToFile = async (url) => {
-            const response = await fetch(url);
-            const blob = await response.blob();
-            const file = new File([blob], "quote.jpg", { type: blob.type });
-            return file;
-          };
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const file = new File([blob], "quote.jpg", { type: blob.type });
+    return file;
+  };
+
 
   shareButton.addEventListener('click', async () => {
     if (navigator.share) { 
@@ -230,14 +235,18 @@
         console.log('Thanks for sharing!');
       })
       .catch(console.error);
-      } else {
-          shareDialog.classList.add('is-open');
-          const file = await urlToFile("{{ path }}");
-      }
+    } else {
+        shareDialog.classList.add('is-open');
+        const file = await urlToFile("{{ path }}");
+        
+        // navigator.clipboard.read([file])
+    }
   });
 
   closeButton.addEventListener('click', event => {
     shareDialog.classList.remove('is-open');
   });
+
+
 </script>
 {% endblock %}
